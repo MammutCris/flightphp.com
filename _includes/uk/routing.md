@@ -1,6 +1,6 @@
-# Routing
+# Маршрутизація
 
-Routing in Flight is done by matching a URL pattern with a callback function.
+Маршрутизація в Flight здійснюється за допомогою a звязку URL адреси з функцією.
 
 ``` php?start_inline=1
 Flight::route('/', function(){
@@ -8,7 +8,7 @@ Flight::route('/', function(){
 });
 ```
 
-The callback can be any object that is callable. So you can use a regular function:
+Можна використати будь який обєкт який можна викликати(callback). Ось таким чином можна використати функцію:
 
 ``` php?start_inline=1
 function hello(){
@@ -18,7 +18,7 @@ function hello(){
 Flight::route('/', 'hello');
 ```
 
-Or a class method:
+А ось таким метод класу:
 
 ``` php?start_inline=1
 class Greeting {
@@ -30,43 +30,43 @@ class Greeting {
 Flight::route('/', array('Greeting','hello'));
 ```
 
-Routes are matched in the order they are defined. The first route to match a request will be invoked.
+Маршрути зіставляються у порядку написання. Перший маршрут який відповість на запит буде працювати.
 
-## Method Routing
+## Методи маршрутизації
 
-By default, route patterns are matched against all request methods. You can respond to specific methods by placing an identifier before the URL.
+По замовчуванню маршрути працюють для усіх методів запиту. Ви можете використати конкретні методи дописуючи ідентифікатор перед URL.
 
 ``` php?start_inline=1
 Flight::route('GET /', function(){
-    echo 'I received a GET request.';
+    echo 'Я відреагував на GET запит.';
 });
 
 Flight::route('POST /', function(){
-    echo 'I received a POST request.';
+    echo 'Я відреагував на POST запит.';
 });
 ```
 
-You can also map multiple methods to a single callback by using a `|` delimiter:
+Ви можете використати декілька методів для одного виклику використовуючи роздільник `|`:
 
 ``` php?start_inline=1
 Flight::route('GET|POST /', function(){
-    echo 'I received either a GET or a POST request.';
+    echo 'Я відгукнусь на GET або на POST запит.';
 });
 ```
 
-## Regular Expressions
+## Регулярні вирази
 
-You can use regular expressions in your routes:
+Ви можете використовувати регулярні вирази у маршрутах:
 
 ``` php?start_inline=1
 Flight::route('/user/[0-9]+', function(){
-    // This will match /user/1234
+    // Це буде відгукуватись на /user/1234
 });
 ```
 
-## Named Parameters
+## Іменні параметри (змінні)
 
-You can specify named parameters in your routes which will be passed along to your callback function.
+Ви можете вказати іменні параметри в маршрутах він буде передаватись разом із викликом до функції.
 
 ``` php?start_inline=1
 Flight::route('/@name/@id', function($name, $id){
@@ -74,7 +74,7 @@ Flight::route('/@name/@id', function($name, $id){
 });
 ```
 
-You can also include regular expressions with your named parameters by using the `:` delimiter:
+Ви можете прописати регулярні вирази з вашими іменними параметрами використовуючи роздільник `:`
 
 ``` php?start_inline=1
 Flight::route('/@name/@id:[0-9]{3}', function($name, $id){
@@ -83,13 +83,13 @@ Flight::route('/@name/@id:[0-9]{3}', function($name, $id){
 });
 ```
 
-## Optional Parameters
+## Необовязкові параметри
 
-You can specify named parameters that are optional for matching by wrapping segments in parentheses.
+Ви можете використовувати іменні параметри які є необовязковими обернувши їх у дужки.
 
 ``` php?start_inline=1
 Flight::route('/blog(/@year(/@month(/@day)))', function($year, $month, $day){
-    // This will match the following URLS:
+    // Будуть працювати наступні URL-и:
     // /blog/2012/12/10
     // /blog/2012/12
     // /blog/2012
@@ -97,63 +97,62 @@ Flight::route('/blog(/@year(/@month(/@day)))', function($year, $month, $day){
 });
 ```
 
-Any optional parameters that are not matched will be passed in as NULL.
+Усі додаткові параметри які будуть відсутні передаватимуться як NULL.
 
-## Wildcards
+## Символи
 
-Matching is only done on individual URL segments. If you want to match multiple segments you can use the `*` wildcard.
+Звіряння проводиться лише на окремих сегментах шляху. Якщо ви хочете щоб після первного шляху мпрописувались будь-які параметри використовуйте роздільник `*`
 
 ``` php?start_inline=1
 Flight::route('/blog/*', function(){
-    // This will match /blog/2000/02/01
+    // Це буде працювати при такому запиті /blog/2000/02/01
 });
 ```
 
-To route all requests to a single callback, you can do:
+Щоб направляти усі маршрути до певного виразу використовуйте:
 
 ``` php?start_inline=1
 Flight::route('*', function(){
-    // Do something
+    // Будь що
 });
 ```
 
-## Passing
+## Передача
 
-You can pass execution on to the next matching route by returning `true` from your callback function.
+Ви можете передати виконання наступному маршруту прописавши returning `true` у функції.
 
 ``` php?start_inline=1
 Flight::route('/user/@name', function($name){
-    // Check some condition
+    // Перевіряємо умову
     if ($name != "Bob") {
-        // Continue to next route
+        // Переходимо до наступного маршруту
         return true;
     }
 });
 
 Flight::route('/user/*', function(){
-    // This will get called
+    // Він буде викликаний
 });
 ```
 
-## Route Info
+## Інформація про маршрут
 
-If you want to inspect the matching route information, you can request for the route
-object to be passed to your callback by passing in `true` as the third parameter in
-the route method. The route object will always be the last parameter passed to your
-callback function.
+Якщо ви хочете перевірити інформацію про маршрут, ви можете передати у ваш маршрут
+обєкт, котрий далі буде передавати`true` якщо цей параметр присутній
+у маршруті. Цей обєкт завжди передається останнім параметром у функцію.
 
 ``` php?start_inline=1
 Flight::route('/', function($route){
-    // Array of HTTP methods matched against
+    // Масив методів
     $route->methods;
 
-    // Array of named parameters
+    // Масив іменних параметрів
     $route->params;
 
-    // Matching regular expression
+    // Масив регулярних виразів
     $route->regex;
 
-    // Contains the contents of any '*' used in the URL pattern
+    // Містить '*' в URL
     $route->splat;
 }, true);
 ```
