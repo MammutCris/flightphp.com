@@ -1,1 +1,1 @@
-An extensible micro-framework for PHP
+Гнучкий мікро-фреймворк на PHP

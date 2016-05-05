@@ -1,4 +1,4 @@
-[about]({{page.lang|prepend:'/'|replace:'/.',''}}/)
-[install]({{page.lang|prepend:'/'|replace:'/.',''}}/install)
-[learn]({{page.lang|prepend:'/'|replace:'/.',''}}/learn)
-[code](https://github.com/mikecao/flight)
+[про фреймворк]({{page.lang|prepend:'/'|replace:'/.',''}}/)
+[установка]({{page.lang|prepend:'/'|replace:'/.',''}}/install)
+[туторіал]({{page.lang|prepend:'/'|replace:'/.',''}}/learn)
+[код](https://github.com/mikecao/flight)
