@@ -1,7 +1,7 @@
-# What is Flight?
+# Що таке Flight?
 
-Flight is a fast, simple, extensible framework for PHP.
-Flight enables you to quickly and easily build RESTful web applications.
+Flight це швидкий, простий і гнучкий фреймворк на PHP.
+Flight дозволяє швидко та легко створювати веб-додатки з використанням RESTful.
 
 ``` php?start_inline=1
 require 'flight/Flight.php';
@@ -13,17 +13,17 @@ Flight::route('/', function(){
 Flight::start();
 ```
 
-[Learn more]({{page.lang|prepend:'/'|replace:'/.',''}}/learn)
+[Детальніше]({{page.lang|prepend:'/'|replace:'/.',''}}/learn)
 
-# Requirements
+# Вимоги
 
-Flight requires PHP 5.3 or greater.
+Flight потребує PHP 5.3 чи вище.
 
-# License
+# Ліцензія
 
-Flight is released under the [MIT](https://github.com/mikecao/flight/blob/master/LICENSE) license.
+Flight створений під ліцензією [MIT](https://github.com/mikecao/flight/blob/master/LICENSE).
 
-# Contributing
+# Допомога у розвитку
 
-This website is hosted on [Github](https://github.com/mikecao/flightphp.com).
-Updates and language translations are welcome.
+Цей сайт знаходиться у [Github](https://github.com/mikecao/flightphp.com).
+Запрошуємо вас допомогти у розвитку та перекладі.
