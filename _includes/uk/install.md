@@ -1,18 +1,18 @@
-# Installation
+# Установка
 
-### 1. Download the files.
+### 1. Завантаження файлів.
 
-If you're using [Composer](https://getcomposer.org/), you can run the following command:
+Якщо ви використовуєте [Composer](https://getcomposer.org/), ви можете завантажити командою:
 
 ```
 composer require mikecao/flight
 ```
 
-OR you can [download](https://github.com/mikecao/flight/archive/master.zip) them directly and extract them to your web directory.
+АБО ви можете [завантажити](https://github.com/mikecao/flight/archive/master.zip) архів.
 
-### 2. Configure your webserver.
+### 2. Налаштування веб-сервера.
 
-For _Apache_, edit your `.htaccess` file with the following:
+Для _Apache_, пропишіть у ваш `.htaccess` файл ці рядки:
 
 ``` apache
 RewriteEngine On
@@ -21,7 +21,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 ```
 
-For _Nginx_, add the following to your server declaration:
+Для _Nginx_, добавте цей текст у файл налаштування сервера:
 
 ``` nginx
 server {
@@ -31,21 +31,21 @@ server {
 }
 ```
 
-### 3. Create your `index.php` file.
+### 3. Створіть`index.php` файл.
 
-First include the framework.
+Спочатку підключаємо фреймворк.
 
 ``` php?start_inline=1
 require 'flight/Flight.php';
 ```
 
-If you're using Composer, run the autoloader instead.
+Якщо ви використовуєте Composer, підключіть автозапуск.
 
 ``` php?start_inline=1
 require 'vendor/autoload.php';
 ```
 
-Then define a route and assign a function to handle the request.
+Потім пропишіть маршрут та напишіть просту функцію яка буде виконуватись при переході за адресою.
 
 ``` php?start_inline=1
 Flight::route('/', function(){
@@ -53,7 +53,7 @@ Flight::route('/', function(){
 });
 ```
 
-Finally, start the framework.
+І на завершення запустіть фреймворк.
 
 ```php
 Flight::start();
